@@ -17,7 +17,7 @@ class CreateAulasTable extends Migration
             $table->timestamps();
             $table->primary('id');
             $table->bigInteger('id');
-            $table->integer('numero');
+            $table->integer('numero')->nullable(false);
             $table->string('edificio', 100)->nullable();
             $table->integer('planta')->nullable();
             $table->bigInteger('centro_id')->unsigned();
