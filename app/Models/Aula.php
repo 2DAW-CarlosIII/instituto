@@ -10,7 +10,6 @@ class Aula extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'numero',
         'edificio',
         'planta',

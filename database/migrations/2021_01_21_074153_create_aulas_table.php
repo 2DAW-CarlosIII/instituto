@@ -16,15 +16,14 @@ class CreateAulasTable extends Migration
         Schema::create('aulas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->primary('id');
             $table->integer('numero')->nullable(false);
             $table->string('edificio', 100)->nullable();
             $table->integer('planta')->nullable();
             $table->bigInteger('centro_id')->unsigned();
 
-            /*
-            $table->foreign('centro_id')->references('id')->on('centros');
-            */
+           /*
+           $table->foreign('centro_id')->references('id')->on('centros');
+           */
         });
     }
 
