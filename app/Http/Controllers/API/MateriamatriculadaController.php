@@ -11,6 +11,16 @@ use App\Http\Resources\MateriamatriculadaResource;
 class MateriamatriculadaController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Materiamatriculada::class, 'materiamatriculada');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
