@@ -67,6 +67,8 @@ class CentroController extends Controller
      */
     public function update(Request $request, Centro $centro)
     {
+        $this->authorize('update', $centro);
+        
         $centroData = json_decode($request->getContent(), true);
         $centro->update($centroData);
 
