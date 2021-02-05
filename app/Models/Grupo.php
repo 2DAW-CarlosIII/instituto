@@ -19,4 +19,20 @@ class Grupo extends Model
         'verificado',
         'creador'
     ];
+
+    /**
+     * Devuelve el coordinador del centro.
+     */
+    public function nivelEstudios()
+    {
+        return $this->belongsTo(Nivel::class, 'nivel');
+    }
+
+    /**
+     * Los usuarios matriculados un determinado grupo.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'matriculas', 'grupo', 'alumno');
+    }
 }
