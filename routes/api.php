@@ -56,10 +56,14 @@ Route::post('/tokens/create', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/user', function (Request $request) {
-        return new CentroResource($request->user()->centroCoordinado);
+        return new UserResource($request->user());
     });
 
     Route::apiResource('centros', CentroController::class);
+
+    Route::get('miCentro', function (Request $request) {
+        return new CentroResource($request->user()->centroCoordinado);
+    });
 
     Route::apiResource('periodoslectivos', PeriodolectivoController::class)->parameters(['periodoslectivos' => 'periodolectivo']);
     Route::apiResource('anyosescolares', AnyoescolarController::class)->parameters(['anyosescolares' => 'anyoescolar']);
