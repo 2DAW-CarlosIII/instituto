@@ -20,8 +20,10 @@ use App\Http\Controllers\API\NivelController;
 use App\Http\Controllers\API\MateriaController;
 use App\Http\Controllers\API\GrupoController;
 use App\Http\Controllers\API\MatriculaController;
+use App\Http\Controllers\API\NotaController;
 
 use App\Http\Resources\CentroResource;
+use App\Http\Resources\MateriaResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +65,10 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/avatar', [\App\Http\Controllers\API\AvatarController::class, 'getAvatar']);
 
     Route::apiResource('centros', CentroController::class);
+
+    Route::apiResource('notas', NotaController::class);
+
+    Route::get('notas/media/{materia_id}', 'App\Http\Controllers\API\MatriculaController@notaMedia');
 
     Route::get('miCentro', function (Request $request) {
         return new CentroResource($request->user()->centroCoordinado);

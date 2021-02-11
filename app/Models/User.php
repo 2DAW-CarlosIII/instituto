@@ -46,6 +46,14 @@ class User extends Authenticatable
         return $this->id == 1;
     }
 
+    public function isProfesor() {
+        return Materiaimpartida::where('docente', Auth::userId())->count() > 0;
+    }
+
+    public function isAlumno() {
+        return Matricula::where('alumno', Auth::userId());
+    }
+
     /**
      * Devolver el centro que coordina.
      */
@@ -60,5 +68,10 @@ class User extends Authenticatable
     public function grupos()
     {
         return $this->belongsToMany(Grupo::class, 'matriculas', 'alumno', 'grupo');
+    }
+
+    public function notas()
+    {
+        return $this->hasMany(Nota::class, 'user_id');
     }
 }
