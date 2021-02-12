@@ -20,6 +20,7 @@ use App\Http\Controllers\API\NivelController;
 use App\Http\Controllers\API\MateriaController;
 use App\Http\Controllers\API\GrupoController;
 use App\Http\Controllers\API\MatriculaController;
+use App\Http\Controllers\API\CursoController;
 
 use App\Http\Resources\CentroResource;
 
@@ -56,8 +57,11 @@ Route::post('/tokens/create', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/user', function (Request $request) {
-        return new UserResource($request->user());
+        return json_encode($request->user());
     });
+
+    Route::apiResource('cursos', CursoController::class);
+    Route::get('cursos/aulavirtual', [CursoController::class, 'aulavirtual']);
 
     Route::post('/avatar', [\App\Http\Controllers\API\AvatarController::class, 'store']);
     Route::get('/avatar', [\App\Http\Controllers\API\AvatarController::class, 'getAvatar']);
