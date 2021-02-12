@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Curso;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Grupo;
@@ -19,13 +20,20 @@ class DatabaseSeeder extends Seeder
     	User::truncate();
     	Grupo::truncate();
     	Matricula::truncate();
-        User::factory(10)->create();
+        Curso::truncate();
         Grupo::factory(20)->create();
         Matricula::factory(15)->create();
+        Curso::factory(10)->create();
 
-        $user = User::factory()
-            ->has(Grupo::factory()->count(3))
-            ->create();
+
+
+
+        $user= new User;
+        $user->name ="Carlos";
+        $user->email="4779458@alu.murciaeduca.es";
+        $user->password=bcrypt("password");
+        $user->usuario_av=128891;
+        $user->save();
     }
 
 }
