@@ -14,6 +14,12 @@ class CursoResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'shortname' => $this->shortname,
+            'fullname' => $this->fullname,
+            'summary' => $this->summary,
+            'showgrades' => $this->showgrades,
+            'startdate' => $this->showgrades,
+        ];
     }
 }

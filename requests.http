@@ -1,0 +1,18 @@
+POST http://127.0.0.1:8000/api/cursos
+Content-Type: application/json
+
+{
+    "shortname": "Prueba",
+    "fullname": "Prueba más larga",
+    "summary": null,
+    "showgrades": null,
+    "startdate": null
+}
+
+###
+GET http://127.0.0.1:8000/api/cursos
+Accept: application/json
+
+###
+
+

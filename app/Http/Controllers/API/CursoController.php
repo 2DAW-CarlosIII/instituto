@@ -16,7 +16,7 @@ class CursoController extends Controller
      */
     public function index()
     {
-        return new CursoResource(Curso::paginate(10));
+        return CursoResource::collection(Curso::paginate(10));
     }
 
     /**
