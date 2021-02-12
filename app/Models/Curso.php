@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Curso extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+      'shortname', 'fullname', 'summary', 'showgrades', 'startdate'
+    ];
 }
