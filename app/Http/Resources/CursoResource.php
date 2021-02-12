@@ -15,6 +15,7 @@ class CursoResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'shortname' => $this->shortname,
             'fullname' => $this->fullname,
             'summary' => $this->summary,
