@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'usuario_av'
     ];
 
     /**
@@ -42,7 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdministrator() {
+    public function isAdministrator()
+    {
         return $this->id == 1;
     }
 
@@ -60,5 +63,10 @@ class User extends Authenticatable
     public function grupos()
     {
         return $this->belongsToMany(Grupo::class, 'matriculas', 'alumno', 'grupo');
+    }
+
+    public function cursos()
+    {
+        return $this->belongsToMany(Curso::class);
     }
 }
