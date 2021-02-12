@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CursoResource;
 use App\Models\Curso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CursoController extends Controller
 {
@@ -42,7 +43,7 @@ class CursoController extends Controller
      */
     public function show(Curso $curso)
     {
-        $this->authorize('view');
+        $this->authorize('view', $curso);
         return new CursoResource($curso);
     }
 
@@ -71,5 +72,15 @@ class CursoController extends Controller
     public function destroy(Curso $curso)
     {
         $curso->delete();
+    }
+
+    public function aulavirtual(){
+        $response = Http::get('https://aulavirtual.murciaeduca.es/website/rest/server.php',[
+            'wstoken' => '',
+            'wsfinction' => 'core_enrol_get_users_courses',
+            'moodlewrestformat' =>'json',
+            'userid' => '85135']);
+
+        return response()->json(json_decode($response));
     }
 }

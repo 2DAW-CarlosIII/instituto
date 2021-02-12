@@ -83,9 +83,9 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 });
 
 Route::apiResource('cursos', CursoController::class);
+Route::get('cursos/aulavirtual', [CursoController::class, 'aulavirtual']);
 
 Route::get('centrosAPIRM', [CentroController::class, 'indexAPIRM']);
-
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
