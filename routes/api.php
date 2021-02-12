@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\AvatarController;
+use App\Http\Controllers\API\CursoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
@@ -59,8 +61,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         return new UserResource($request->user());
     });
 
-    Route::post('/avatar', [\App\Http\Controllers\API\AvatarController::class, 'store']);
-    Route::get('/avatar', [\App\Http\Controllers\API\AvatarController::class, 'getAvatar']);
+    Route::post('/avatar', [AvatarController::class, 'store']);
+    Route::get('/avatar', [AvatarController::class, 'getAvatar']);
 
     Route::apiResource('centros', CentroController::class);
 
@@ -79,6 +81,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     en concreto (Ej: http://instituto.test/api/niveles/1), nos lo coge como "nivele" (laravel interpreta que el singular de niveles es nivele). Si no le indicamos a laravel que el singular de
     niveles es nivel, nos hará la consulta pero nos devolverá todo a null */
 });
+
+Route::apiResource('cursos', CursoController::class);
 
 Route::get('centrosAPIRM', [CentroController::class, 'indexAPIRM']);
 
