@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Matricula;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\MatriculaResource;
 
@@ -69,5 +70,14 @@ class MatriculaController extends Controller
     public function destroy(Matricula $matricula)
     {
         $matricula->delete();
+    }
+    public function notaMedia($materia_id)
+    {
+        if (User::isAlumno()) {
+            $media = DB::table('notas')->where('materia_id', $materia_id)->avg('nota');
+            return response()->json([
+                'data' => $media
+            ]);
+        }
     }
 }
