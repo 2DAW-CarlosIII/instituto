@@ -12,4 +12,9 @@ class Curso extends Model
     protected $fillable = [
       'shortname', 'fullname', 'summary', 'showgrades', 'startdate'
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

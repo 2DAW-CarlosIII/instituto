@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Grupo::class, 'matriculas', 'alumno', 'grupo');
     }
+
+    public function cursos()
+    {
+        return $this->belongsToMany(Curso::class);
+    }
 }
