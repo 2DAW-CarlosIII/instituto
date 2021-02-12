@@ -133,6 +133,7 @@ class ExamenTest extends TestCase
         $response->assertStatus(200)
             ->assertJsonCount(1)
             ->assertJsonStructure(['data' => ['shortname', 'fullname', 'summary']]);
+
     }
 
     public function test_ejercicio7()
