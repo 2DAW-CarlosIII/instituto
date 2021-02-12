@@ -20,7 +20,7 @@ use App\Http\Controllers\API\NivelController;
 use App\Http\Controllers\API\MateriaController;
 use App\Http\Controllers\API\GrupoController;
 use App\Http\Controllers\API\MatriculaController;
-
+use App\Http\Controllers\API\CursoController;
 use App\Http\Resources\CentroResource;
 
 /*
@@ -63,6 +63,9 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/avatar', [\App\Http\Controllers\API\AvatarController::class, 'getAvatar']);
 
     Route::apiResource('centros', CentroController::class);
+    Route::apiResource('cursos', CursoController::class);
+
+    Route::get('/api/cursos/aulavirtual', '\App\Http\Controllers\API\CursoController@aulavirtual');
 
     Route::get('miCentro', function (Request $request) {
         return new CentroResource($request->user()->centroCoordinado);

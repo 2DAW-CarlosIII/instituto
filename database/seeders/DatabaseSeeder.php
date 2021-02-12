@@ -26,6 +26,19 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()
             ->has(Grupo::factory()->count(3))
             ->create();
+        
+        self::seedUsuarios();
     }
+
+    private static function seedUsuarios()
+    {
+        User::truncate();
+    	$u = new User;
+		$u->name = "Borja";
+		$u->email = "6379454@alu.murciaeduca.es";
+		$u->usuario_av = 2174388;
+        $u->password = bcrypt("6379454");
+		$u->save();
+	}
 
 }
