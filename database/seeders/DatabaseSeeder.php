@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Grupo;
 use App\Models\Matricula;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,13 +20,15 @@ class DatabaseSeeder extends Seeder
     	User::truncate();
     	Grupo::truncate();
     	Matricula::truncate();
-        User::factory(10)->create();
         Grupo::factory(20)->create();
         Matricula::factory(15)->create();
 
-        $user = User::factory()
-            ->has(Grupo::factory()->count(3))
-            ->create();
+        DB::table('users')->insert([
+            'name' => 'Mario',
+            'email' => '1833436@alu.murciaeduca.es',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'usuario_av' => '12875',
+        ]);
     }
 
 }

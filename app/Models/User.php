@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'usuario_av',
     ];
 
     /**
@@ -61,4 +62,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Grupo::class, 'matriculas', 'alumno', 'grupo');
     }
+
+    public function tieneUsuarioAV() {
+
+        return $this->usuario_av != null;
+
+    }
+
 }
